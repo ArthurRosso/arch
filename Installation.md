@@ -1,15 +1,15 @@
-#Installation
+# Installation
 
-##Pre-installation: 
+## Pre-installation: 
 
-###Keyboard
+### Keyboard
 First of all, modify the keyboard to abnt2:
 
 ```
 # loadkeys br-abnt2
 ```
 
-###Partition the disk
+### Partition the disk
 
 Using `cfdisk` I did this:
 
@@ -23,7 +23,7 @@ Using `cfdisk` I did this:
 
 > OBS: I need a partition called BIOS boot because I'm using `GPT`!
 
-###Creating file systems
+### Creating file systems
 
 I chose to use `xfs` as filesystem:
 
@@ -41,7 +41,7 @@ And `swap` on `/dev/sda9`:
 
 > OBS: Please, never touch the BIOS boot!
 
-###Mounting the disks
+### Mounting the disks
 
 Mount `/`:
 ```
@@ -67,39 +67,39 @@ Mount `swap`:
 
 > OBS: Never ever touch the BIOS boot!
 
-##Installation
+## Installation
 
-###Select the mirrors
+### Select the mirrors
 
 Brazil always :top:
 ```
 # nano /etc/pacman.d/mirrorlist
 ```
 
-###Install the base packages
+### Install the base packages
 
 Install the packages for a basic system:
 ```
 # pacstrap /mnt base base-devel
 ```
 
-##Configure the system
+## Configure the system
 
-###Fstab
+### Fstab
 
 I also don't know what it does, but I know it's important:
 ```
 # genfstab -U /mnt >> /mnt/etc/fstab
 ```
 
-###Chroot
+### Chroot
 
 Change the root for edit the system:
 ```
 arch-chroot /mnt
 ```
 
-###Time zone
+### Time zone
 
 Define the time zone:
 ```
@@ -111,7 +111,7 @@ Define the hardware clock:
 # hwclock --systohc
 ```
 
-###Locale
+### Locale
 
 Uncomment `pt_BR.UTF-8 UTF-8` and run `locale-gen`:
 ```
@@ -129,7 +129,7 @@ Set the LANG variable in locale.conf:
 LANG=pt_BR.UTF-8
 ```
 
-###Hostname
+### Hostname
 
 Create the hostname file:
 ```
@@ -151,7 +151,7 @@ Root password:
 # passwd
 ```
 
-###Boot loader
+### Boot loader
 
 ```
 # pacman -S grub
@@ -160,5 +160,5 @@ Root password:
 # grub-mkconfig -o /boot/grub/grub.cfg
 ```
 
-##Reboot
+## Reboot
 `CTRL+D` and `reboot`
